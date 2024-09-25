@@ -1,0 +1,21 @@
+[
+    {
+      "id": 1,
+      "nome": "Carlos Mendes",
+      "email": "carlos.mendes@exemplo.com",
+      "senha": "senhaSegura123"
+    },
+    {
+      "id": 2,
+      "nome": "Ana Souza",
+      "email": "ana.souza@exemplo.com",
+      "senha": "senhaSegura456"
+    },
+    {
+      "id": 3,
+      "nome": "Roberto Lima",
+      "email": "roberto.lima@exemplo.com",
+      "senha": "senhaSegura789"
+    }
+  ]
+  

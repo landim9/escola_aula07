@@ -1,0 +1,48 @@
+[
+    {
+      "id": 1,
+      "nome": "Turma de Desenvolvimento Web",
+      "idProfessor": 1,
+      "atividades": [
+        {
+          "id": 1,
+          "nome": "Projeto de Website"
+        },
+        {
+          "id": 2,
+          "nome": "Trabalho de Front-end"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nome": "Turma de Banco de Dados",
+      "idProfessor": 2,
+      "atividades": [
+        {
+          "id": 3,
+          "nome": "Criação de Banco de Dados"
+        },
+        {
+          "id": 4,
+          "nome": "Consulta SQL Avançada"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "nome": "Turma de Programação em Python",
+      "idProfessor": 3,
+      "atividades": [
+        {
+          "id": 5,
+          "nome": "Desenvolvimento de Aplicativo"
+        },
+        {
+          "id": 6,
+          "nome": "Trabalho de Análise de Dados"
+        }
+      ]
+    }
+  ]
+  
