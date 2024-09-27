@@ -1,24 +1,26 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const bcrypt = require('bcrypt');
 
 const turmas = require("./turmas.json");
 const professores = require("./professor.json");
 const atividades = require("./atividades.json");
 
 async function main() {
-    // Criar professores primeiro para garantir que existam antes de criar turmas
     const createdProfessores = {};
-    for (const professor of professores) {
-        const createdProfessor = await prisma.professor.create({
-            data: {
-                nome: professor.nome,
-                email: professor.email,
-                senha: professor.senha
-            }
-        });
-        createdProfessores[createdProfessor.id] = createdProfessor; // Armazenar o professor criado
-        console.log(`Professor criado: ${createdProfessor.nome}`);
-    }
+for (const professor of professores) {
+    const hashedPassword = await bcrypt.hash(professor.senha, 10); // Hash da senha do professor atual
+    const createdProfessor = await prisma.professor.create({
+        data: {
+            nome: professor.nome,
+            email: professor.email,
+            senha: hashedPassword // Usar o hashedPassword aqui
+        }
+    });
+    createdProfessores[createdProfessor.id] = createdProfessor; // Armazenar o professor criado
+    console.log(`Professor criado: ${createdProfessor.nome}`);
+}
+
 
     // Criar turmas
     const createdTurmas = {};

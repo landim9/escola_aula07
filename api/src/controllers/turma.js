@@ -68,7 +68,7 @@ const deleteTurma = async (req, res) => {
         res.status(200).json({ message: 'Turma deletada com sucesso.' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Erro ao deletar turma!' });
+        res.status(500).json({ error: 'Você não pode excluir uma turma com atividades cadastradas!' });
     }
 };
 

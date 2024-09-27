@@ -83,7 +83,8 @@ const read = async (req, res) => {
             select: {
                 id: true,
                 nome: true,
-                email: true
+                email: true,
+                Turma: true
                 // Não deve retornar a senha por questões de segurança
             }
         });
@@ -103,15 +104,33 @@ const deleta = async (req, res) => {
         });
         res.status(200).json({ message: 'Professor deletado com sucesso.' });
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: 'Erro ao deletar professor!' });
+        console.log("Não é possivel excluir um professor cadastrado a uma turma")
     }
 };
+
+const logout = async (req, res) => {
+    try {
+        req.session.destroy(err => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ error: 'Erro ao encerrar a sessão!' });
+            }
+            res.status(200).json({ message: 'Logout realizado com sucesso!' });
+            res.redirect('/')
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao processar o logout!' });
+    }
+};
+
 
 module.exports = {
     create,
     login,
     update,
     read,
-    deleta
+    deleta,
+    logout
 };

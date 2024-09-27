@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/login', Professor.login);
+router.post('/logout', Professor.logout);
 router.post('/professor', Professor.create);
 router.get('/professor', Professor.read);
 router.put('/professor/:id', Professor.update)
