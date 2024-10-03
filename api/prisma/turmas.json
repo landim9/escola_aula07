@@ -6,11 +6,11 @@
       "atividades": [
         {
           "id": 1,
-          "nome": "Projeto de Website"
+          "descricao": "Projeto de Website"
         },
         {
           "id": 2,
-          "nome": "Trabalho de Front-end"
+          "descricao": "Trabalho de Front-end"
         }
       ]
     },
@@ -21,11 +21,11 @@
       "atividades": [
         {
           "id": 3,
-          "nome": "Criação de Banco de Dados"
+          "descricao": "Criação de Banco de Dados"
         },
         {
           "id": 4,
-          "nome": "Consulta SQL Avançada"
+          "descricao": "Consulta SQL Avançada"
         }
       ]
     },
@@ -36,11 +36,11 @@
       "atividades": [
         {
           "id": 5,
-          "nome": "Desenvolvimento de Aplicativo"
+          "descricao": "Desenvolvimento de Aplicativo"
         },
         {
           "id": 6,
-          "nome": "Trabalho de Análise de Dados"
+          "descricao": "Trabalho de Análise de Dados"
         }
       ]
     }

@@ -16,7 +16,7 @@
 2. Abra com o VsCode e abra um terminal **(Ctrl+")** CMD ou bash
 3. Instale as dependências
 ```bash
-npm install express cors @prisma/client bcrypt nodemon
+npm i
 ```
 4. Inicie o SGBD MySQL MariaDB
 5. Na pasta **./api** crie o arquivo **.env** com o conteúdo:

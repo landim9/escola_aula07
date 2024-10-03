@@ -1,10 +1,10 @@
 const uri = 'http://localhost:3000/login';
-const user = JSON.parse(window.localStorage.getItem('professor'));
-const form = document.querySelector('#login');
+const user = JSON.parse(window.localStorage.getItem('userTurmaAtividade'));
+const form = document.querySelector('#formLogin');
 
 if (user)
     if (user.logado) {
-        window.location.href = 'assets/pages/home.html';
+        window.location.href = './assets/pages/home.html';
     }
 
 form.addEventListener('submit', function (e) {
@@ -30,8 +30,8 @@ form.addEventListener('submit', function (e) {
         .then(res => {
             const dados = res;
             dados.logado = true;
-            window.localStorage.setItem('professor', JSON.stringify(dados));
-            window.location.href = './home.html';
+            window.localStorage.setItem('userTurmaAtividade', JSON.stringify(dados));
+            window.location.href = './assets/pages/home.html';
         })
         .catch(err => console.error('Erro:', err));
 });

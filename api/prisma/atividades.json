@@ -1,7 +1,7 @@
 [
     {
       "id": 1,
-      "nome": "Projeto de Website",
+      "descricao": "Projeto de Website",
       "turmaId": 1,
       "turma": {
         "id": 1,
@@ -11,7 +11,7 @@
     },
     {
       "id": 2,
-      "nome": "Trabalho de Front-end",
+      "descricao": "Trabalho de Front-end",
       "turmaId": 1,
       "turma": {
         "id": 1,
@@ -21,7 +21,7 @@
     },
     {
       "id": 3,
-      "nome": "Criação de Banco de Dados",
+      "descricao": "Criação de Banco de Dados",
       "turmaId": 2,
       "turma": {
         "id": 2,
@@ -31,7 +31,7 @@
     },
     {
       "id": 4,
-      "nome": "Consulta SQL Avançada",
+      "descricao": "Consulta SQL Avançada",
       "turmaId": 2,
       "turma": {
         "id": 2,
@@ -41,7 +41,7 @@
     },
     {
       "id": 5,
-      "nome": "Desenvolvimento de Aplicativo",
+      "descricao": "Desenvolvimento de Aplicativo",
       "turmaId": 3,
       "turma": {
         "id": 3,
@@ -51,7 +51,7 @@
     },
     {
       "id": 6,
-      "nome": "Trabalho de Análise de Dados",
+      "descricao": "Trabalho de Análise de Dados",
       "turmaId": 3,
       "turma": {
         "id": 3,

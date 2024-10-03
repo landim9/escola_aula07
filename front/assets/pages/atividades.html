@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/ico" href="./assets/icone.png" />
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Sistema Escolar</title>
+</head>
+
+<body>
+    <header>
+        <h4 id="professor"></h4>
+        <h1>Sistema Escolar</h1>
+        <button onclick="sair()">Sair</button>
+    </header>
+    <main>
+
+        <section class="tabela">
+            <button onclick="modalNovo.classList.remove('oculto')">Cadastrar atividade</button>
+            <div class="cabecalho">
+                <h3>Turma:</h3><label id="nomeTurma"></label>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Número</th>
+                        <th>Nome</th>
+                    </tr>
+                </thead>
+                <tbody id="corpo"></tbody>
+            </table>
+        </section>
+    </main>
+    <div id="modalNovo" class="modal oculto">
+        <div class="janela">
+            <h2>Cadastrar atividade</h2>
+            <form id="formAtividade">
+                <input type="text" name="descricao" placeholder="Descrição da atividade" required>
+                <div>
+                    <button type="reset" onclick="modalNovo.classList.add('oculto')">Cancelar</button>
+                    <button type="submit">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="../script/atividade.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</html>

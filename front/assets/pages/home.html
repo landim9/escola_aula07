@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/ico" href="./assets/icone.png" />
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Sistema Escolar</title>
+</head>
+
+<body>
+    <header>
+        <h4 id="professor"></h4>
+        <h1>Sistema Escolar</h1>
+        <button onclick="sair()">Sair</button>
+    </header>
+    <main>
+      
+        <section class="tabela">
+            <button onclick="modalNovo.classList.remove('oculto')" style="margin-top:50px">Cadastrar turma</button>
+            <h3>Turmas</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="corpo"> 
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+    </footer>
+    <div id="modalNovo" class="modal oculto">
+        <div class="janela">
+            <h2>Cadastrar turma</h2>
+            <form id="formTurma">
+                <input type="text" name="nome" placeholder="Nome da turma" required>
+                <div>
+                    <button type="reset" onclick="modalNovo.classList.add('oculto')">Cancelar</button>
+                    <button type="submit">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="../script/home.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+</html>

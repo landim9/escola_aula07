@@ -27,12 +27,12 @@ model Turma {
   nome String @db.VarChar(255)
   idProfessor Int
   professorId Professor @relation(fields: [idProfessor], references: [id])
-  atividades Atividade[] // Relacionamento com Atividade
+  atividades Atividade[]
 }
 
 model Atividade {
   id Int @id @default(autoincrement())
-  nome String @db.VarChar(255)
-  turmaId Int // Campo para o relacionamento
-  turma Turma @relation(fields: [turmaId], references: [id]) // Relacionamento com Turma
+  descricao String @db.VarChar(255)
+  turmaId Int 
+  turma Turma @relation(fields: [turmaId], references: [id]) 
 }

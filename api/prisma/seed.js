@@ -42,11 +42,11 @@ for (const professor of professores) {
     for (const atividade of atividades) {
         const createdAtividade = await prisma.atividade.create({
             data: {
-                nome: atividade.nome,
+                descricao: atividade.descricao,
                 turmaId: atividade.turmaId // Associar a atividade à turma correta
             }
         });
-        console.log(`Atividade criada: ${createdAtividade.nome}`);
+        console.log(`Atividade criada: ${createdAtividade.descricao}`);
     }
 }
 

@@ -3,17 +3,15 @@ const prisma = new PrismaClient();
 
 const createAtividade = async (req, res) => {
     try {
-        const { nome, turmaId } = req.body;
+        const { descricao, turmaId } = req.body;
 
-        // Verifica se os campos obrigatórios estão presentes
-        if (!nome || !turmaId) {
-            return res.status(400).json({ error: 'Nome e turmaId são obrigatórios!' });
+        if (!descricao || !turmaId) {
+            return res.status(400).json({ error: 'descricao e turmaId são obrigatórios!' });
         }
 
-        // Cria uma nova atividade
         const atividade = await prisma.atividade.create({
             data: {
-                nome,
+                descricao,
                 turmaId: Number(turmaId)
             }
         });
@@ -28,7 +26,30 @@ const createAtividade = async (req, res) => {
 
 const readAtividades = async (req, res) => {
     try {
-        const atividades = await prisma.atividade.findMany();
+        const atividades = await prisma.atividade.findMany({});
+        
+
+        res.status(200).json(atividades);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao buscar atividades!' });
+    }
+};
+
+const readAtividadesTurma = async (req, res) => {
+    try {
+        const id = req.params.id;
+
+        const atividades = await prisma.atividade.findMany({
+            where: {
+                turmaId: parseInt(id)
+            },
+            select: {
+                "id": true,
+                "atividades": true
+            }
+        });
+        
 
         res.status(200).json(atividades);
     } catch (error) {
@@ -69,5 +90,6 @@ module.exports = {
     createAtividade,
     readAtividades,
     updateAtividade,
-    deleteAtividade
+    deleteAtividade,
+    readAtividadesTurma
 };

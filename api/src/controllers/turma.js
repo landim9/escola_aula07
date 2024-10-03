@@ -30,17 +30,61 @@ const createTurma = async (req, res) => {
 };
 
 const readTurmas = async (req, res) => {
-    try {
-        const turmas = await prisma.turma.findMany({
-            include: {
-                atividades: true // Inclui atividades associadas
+    if (req.params.id !== undefined) {
+        const turma = await prisma.turma.findUnique({
+            where: {
+                id: parseInt(req.params.id)
+            },
+            select: {
+                "id": true,
+                "nome": true,
+                "idProfessor": true,
+                "atividades": true
             }
         });
+        return res.json(turma);
+    } else {
+        const turmaes = await prisma.turma.findMany({});
+        return res.json(turmaes);
+    }
+};
 
-        res.status(200).json(turmas);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Erro ao buscar turmas!' });
+
+const readTurmasProf = async (req, res) => {
+    if (req.params.id !== undefined) {
+        const turma = await prisma.turma.findMany({
+            where: {
+                idProfessor: parseInt(req.params.id)
+            },
+            select: {
+                "id": true,
+                "nome": true,
+                "idProfessor": true,
+                "atividades": true
+            }
+        });
+        return res.json(turma);
+    } else {
+        const turmaes = await prisma.turma.findMany({});
+        return res.json(turmaes);
+    }
+};
+
+const readTurmasAtiv = async (req, res) => {
+    if (req.params.id !== undefined) {
+        const turma = await prisma.turma.findMany({
+            where: {
+                id: parseInt(req.params.id)
+            },
+            select: {
+                "id": true,
+                "atividades": true
+            }
+        });
+        return res.json(turma);
+    } else {
+        const turmaes = await prisma.turma.findMany({});
+        return res.json(turmaes);
     }
 };
 
@@ -76,5 +120,7 @@ module.exports = {
     createTurma,
     readTurmas,
     updateTurma,
-    deleteTurma
+    deleteTurma,
+    readTurmasProf,
+    readTurmasAtiv
 };

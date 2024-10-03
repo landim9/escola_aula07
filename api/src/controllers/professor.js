@@ -1,21 +1,18 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
-const bcrypt = require('bcrypt'); // Para hash de senhas
+const bcrypt = require('bcrypt'); 
 require('dotenv').config();
 
 const create = async (req, res) => {
     try {
         const { nome, email, senha } = req.body;
 
-        // Verifica se os campos obrigatórios estão presentes
         if (!nome || !email || !senha) {
             return res.status(400).json({ error: 'Nome, email e senha são obrigatórios!' });
         }
 
-        // Hash da senha
         const hashedPassword = await bcrypt.hash(senha, 10);
 
-        // Cria um novo professor
         const professor = await prisma.professor.create({
             data: {
                 nome,
@@ -24,7 +21,7 @@ const create = async (req, res) => {
             },
         });
 
-        res.status(201).json(professor);
+        res.status(201).json({ message: 'Registro efetuado com sucesso'});
 
     } catch (error) {
         console.error(error);
@@ -44,15 +41,15 @@ const login = async (req, res) => {
             return res.status(404).json({ error: "Professor não encontrado!" });
         }
 
-        // Verifica a senha
+      
         const isValidPassword = await bcrypt.compare(senha, professor.senha);
         if (!isValidPassword) {
             return res.status(401).json({ error: "Senha incorreta!" });
         }
 
-        // Retorna informações do professor
+    
         res.status(200).json({
-            uid: professor.id,
+            id: professor.id,
             email: professor.email,
             nome: professor.nome
         });
@@ -78,23 +75,47 @@ const update = async (req, res) => {
 };
 
 const read = async (req, res) => {
-    try {
-        const professors = await prisma.professor.findMany({
+    const id = req.params.id;
+
+    if (id) {
+        const parsedId = parseInt(id);
+
+        if (isNaN(parsedId)) {
+            return res.status(400).json({ message: 'ID inválido' });
+        }
+
+        const professor = await prisma.professor.findUnique({
+            where: {
+                id: parsedId // Use parsedId aqui
+            },
             select: {
                 id: true,
                 nome: true,
                 email: true,
                 Turma: true
-                // Não deve retornar a senha por questões de segurança
             }
         });
 
-        res.status(200).json(professors);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Erro ao buscar professores!' });
+        if (!professor) {
+            return res.status(404).json({ message: 'Professor não encontrado' });
+        }
+
+        return res.json(professor);
+    } else {
+        const professores = await prisma.professor.findMany({
+            select: {
+                id: true,
+                nome: true,
+                email: true,
+                Turma: true
+            }
+        });
+
+        return res.json(professores);
     }
 };
+
+
 
 const deleta = async (req, res) => {
     try {
@@ -109,21 +130,6 @@ const deleta = async (req, res) => {
     }
 };
 
-const logout = async (req, res) => {
-    try {
-        req.session.destroy(err => {
-            if (err) {
-                console.error(err);
-                return res.status(500).json({ error: 'Erro ao encerrar a sessão!' });
-            }
-            res.status(200).json({ message: 'Logout realizado com sucesso!' });
-            res.redirect('/')
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Erro ao processar o logout!' });
-    }
-};
 
 
 module.exports = {
@@ -132,5 +138,4 @@ module.exports = {
     update,
     read,
     deleta,
-    logout
 };

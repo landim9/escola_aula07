@@ -20,7 +20,7 @@ CREATE TABLE `Turma` (
 -- CreateTable
 CREATE TABLE `Atividade` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `nome` VARCHAR(255) NOT NULL,
+    `descricao` VARCHAR(255) NOT NULL,
     `turmaId` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
