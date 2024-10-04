@@ -18,10 +18,19 @@ else{
 }
 professor.innerHTML = user.nome;
 nomeTurma.innerHTML = turma.nome;
-//Listar todas as turmas do professor
-fetch(uri + 'turmas/' + turma.id)
+
+fetch(uri + 'atividade/' + turma.id)
     .then(response => response.json())
     .then(data => {
+
+        // Se 'data' não é um array, trate-o como um objeto
+        if (!Array.isArray(data)) {
+            data = [data]; // Coloca o objeto em um array
+        }
+
+
+
+        // Renderiza apenas as atividades filtradas
         data.forEach(a => {
             corpo.innerHTML += `
             <tr>
@@ -29,7 +38,14 @@ fetch(uri + 'turmas/' + turma.id)
                 <td>${a.descricao}</td>
             </tr>`;
         });
+    })
+    .catch(error => {
+        console.error('Erro na operação fetch:', error);
     });
+
+
+
+
 
 //Cadastrar atividade
 form.addEventListener('submit', (e) => {

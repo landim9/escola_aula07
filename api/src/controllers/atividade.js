@@ -37,19 +37,20 @@ const readAtividades = async (req, res) => {
 };
 
 const readAtividadesTurma = async (req, res) => {
-    try {
-        const id = req.params.id;
+    const { turmaId } = req.params;
 
+    // Verifique se turmaId é um número válido
+    if (isNaN(turmaId)) {
+        return res.status(400).json({ error: 'ID da turma inválido!' });
+    }
+
+    try {
+        // Busca as atividades relacionadas à turma específica
         const atividades = await prisma.atividade.findMany({
             where: {
-                turmaId: parseInt(id)
-            },
-            select: {
-                "id": true,
-                "atividades": true
+                turmaId: Number(turmaId) // Converte para número
             }
         });
-        
 
         res.status(200).json(atividades);
     } catch (error) {

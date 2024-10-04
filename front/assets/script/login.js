@@ -35,3 +35,7 @@ form.addEventListener('submit', function (e) {
         })
         .catch(err => console.error('Erro:', err));
 });
+
+function registre(){
+    window.location.href = './assets/pages/registre.html';
+}

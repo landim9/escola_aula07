@@ -18,14 +18,13 @@ router.put('/professor/:id', Professor.update)
 router.delete('/professor/:id', Professor.deleta)
 
 router.get('/atividade', Atividade.readAtividades);
-router.get('/atividade/:id', Atividade.readAtividades);
+router.get('/atividade/:turmaId', Atividade.readAtividadesTurma);
 router.post('/atividade', Atividade.createAtividade);
 router.put('/atividade/:id',  Atividade.updateAtividade);
 router.delete('/atividade/:id',  Atividade.deleteAtividade);
 
 router.get('/turma', Turma.readTurmas);
 router.get('/turma/:id', Turma.readTurmasProf);
-router.get('/turmas/:id', Turma.readTurmasAtiv);
 router.post('/turma', Turma.createTurma);
 router.put('/turma/:id',  Turma.updateTurma);
 router.delete('/turma/:id',  Turma.deleteTurma);

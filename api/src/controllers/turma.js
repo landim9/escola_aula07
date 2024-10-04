@@ -109,7 +109,7 @@ const deleteTurma = async (req, res) => {
         await prisma.turma.delete({
             where: { id: Number(id) },
         });
-        res.status(200).json({ message: 'Turma deletada com sucesso.' });
+        res.status(204).json({ message: 'Turma deletada com sucesso.' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Você não pode excluir uma turma com atividades cadastradas!' });

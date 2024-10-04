@@ -70,20 +70,31 @@ form.addEventListener('submit', (e) => {
 
 function excluir(id) {
     if (confirm('Deseja realmente excluir esta turma?')) {
-        fetch(uri + 'turma/' + id, {
+        fetch(`${uri}turma/${id}`, {
             method: 'DELETE'
         })
-            .then(response => response.status)
-            .then(data => {
-                if (data === 204) {
-                    alert('Turma excluída com sucesso!');
-                    window.location.reload();
-                } else {
-                    alert('Você não pode excluir uma turma com atividades cadastradas!');
-                }
-            });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Falha na exclusão da turma');
+            }
+            return response.status; // Retorna o status
+        })
+        .then(status => {
+            if (status === 204) {
+                alert('Turma excluída com sucesso!');
+                window.location.reload();
+            } else  {
+                if(response.status === 500)
+                alert('Você não pode excluir uma turma com atividades cadastradas!');
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao excluir a turma:', error);
+            alert('Você não pode excluir uma turma com atividades cadastradas!.');
+        });
     }
 }
+
 
 function visualizar(id, nome) {
     const turma = { id, nome };

@@ -41,8 +41,9 @@ header {
 
 .head {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
+  gap: 610px;
 }
 main {
   width: 100%;
@@ -91,7 +92,7 @@ button:hover {
   background-color: var(--color-tertiary);
 }
 
-#formLogin {
+#formLogin, #formRegistro {
   width: 100%;
   max-width: 400px;
   height: 100%;
@@ -106,7 +107,7 @@ button:hover {
   padding: 1rem;
 }
 
-#formLogin input {
+#formLogin input, #formRegistro input {
   width: 70%;
   margin: 0.5rem;
   padding: 0.5rem;
@@ -232,3 +233,4 @@ button:hover {
 .oculto {
   display: none;
 }
+

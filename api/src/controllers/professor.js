@@ -86,7 +86,7 @@ const read = async (req, res) => {
 
         const professor = await prisma.professor.findUnique({
             where: {
-                id: parsedId // Use parsedId aqui
+                id: parsedId 
             },
             select: {
                 id: true,
